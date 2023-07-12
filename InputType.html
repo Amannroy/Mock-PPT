@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Box</title>
+    <style>
+        input{
+            width:200px;
+        }
+        .messages{
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .messages li{
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <input id="message">
+    <button id="submit">Submit</button>
+    <ul class="messages"></ul>
+
+    <script>
+        const messageInput = document.getElementById('message');
+        const submitButton = document.getElementById('submit');
+        const messagesList = document.querySelector('.messages');
+
+        submitButton.addEventListener('click', function(){
+            const message = messageInput.value;
+            messagesList.innerHTML += `<li>${message}</li>`;
+            messageInput.value = '';
+        });
+    </script>
+</body>
+</html>
