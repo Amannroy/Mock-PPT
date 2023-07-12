@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Validation</title>
+<style>
+.form-control {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.invalid {
+  border-color: red;
+}
+</style>
+</head>
+<body>
+<form>
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" required />
+  </div>
+  <div class="form-group">
+    <label for="phone">Phone</label>
+    <input type="tel" class="form-control" id="phone" required />
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" required />
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" id="age" min="18" max="100" required />
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <select class="form-control" id="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="date">Date</label>
+    <input type="date" class="form-control" id="date" required />
+  </div>
+  <div class="form-group">
+    <label for="color">Color</label>
+    <input type="color" class="form-control" id="color" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<script>
+const form = document.querySelector('form');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  // Validate the name field.
+  const name = document.getElementById('name').value;
+  if (name === '') {
+    document.getElementById('name').classList.add('invalid');
+    return;
+  } else {
+    document.getElementById('name').classList.remove('invalid');
+  }
+
+  // Validate the email field.
+  const email = document.getElementById('email').value;
+  if (email === '') {
+    document.getElementById('email').classList.add('invalid');
+    return;
+  } else if (!/.+@.+\..+/.test(email)) {
+    document.getElementById('email').classList.add('invalid');
+    return;
+  } else {
+    document.getElementById('email').classList.remove('invalid');
+  }
+
+  // Validate the phone field.
+  const phone = document.getElementById('phone').value;
+  if (phone === '') {
+    document.getElementById('phone').classList.add('invalid');
+    return;
+  } else if (!/\d{10}$/.test(phone)) {
+    document.getElementById('phone').classList.add('invalid');
+    return;
+  } else {
+    document.getElementById('phone').classList.remove('invalid');
+  }
+
+  // Validate the password field.
+  const password = document.getElementById('password').value;
+  if (password === '') {
+    document.getElementById('password').classList.add('invalid');
+    return;
+  } else if (password.length < 8) {
+    document.getElementById('password').classList.add('invalid');
